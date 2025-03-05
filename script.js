@@ -19,13 +19,13 @@ var URL_PARAMS = new URLSearchParams(QUERY_STRING);
 /** URL Args **/
 
 var ARG_ITEM = URL_PARAMS.get("item");
-console.log(`[Arg] Item ID: ${ARG_ITEM}`);
+console.log(`[Arg] Item: ${ARG_ITEM}`);
 
 var ARG_LIST = URL_PARAMS.get("list");
-console.log(`[Arg] List ID: ${ARG_LIST}`);
+console.log(`[Arg] List: ${ARG_LIST}`);
 
 var ARG_TAG = URL_PARAMS.get("tag");
-console.log(`[Arg] Tag ID: ${ARG_TAG}`);
+console.log(`[Arg] Tag: ${ARG_TAG}`);
 
 
 /** HTML **/
@@ -75,18 +75,19 @@ function copyText(id)
 function getIdFromURL (regex, url)
 {
   var match = url.match(regex);
+  console.log(`[Regex] ${match}`);
   if (match.length == 0) {
     return false;
   }
   return match[2];
 }
 
-function getItemID (url)
+function idItemFromURL (url)
 {
   return getIdFromURL(REGEX_ID_ITEM, url);
 }
 
-function getListID (url)
+function idListFromURL (url)
 {
   return getIdFromURL(REGEX_ID_LIST, url);
 }
@@ -101,7 +102,7 @@ function getPageURL ()
     console.log(`[Redirect] List: ${ARG_LIST}`);
     return `${URL_SITE}/List.html?id=${ARG_LIST}`;
   }
-  console.log(`[Redirect] Default`);
+  console.log(`[Redirect] Link`);
   return `${URL_SITE}/Link.html`;
 }
 
@@ -112,8 +113,8 @@ function getPageURL ()
 function pageMain (id)
 {
   var url = getPageURL();
-  setURL(url);
   setLink(id, url);
+  setURL(url);
 }
 
 
@@ -124,17 +125,20 @@ function newLinkItem (idOld, idNew, idMsg)
 {
   var oldItem = getElement(idOld);
   var oldURL = oldItem.value;
+  console.log(`[Link] URL: ${oldURL}`);
   if (!oldURL) {
     setText(idMsg, "Error: Invalid URL");
     return;
   }
-  var itemID = getItemID(oldURL);
-  if (itemID === false) {
+  var itemID = idItemFromURL(oldURL);
+  console.log(`[Link] Item: ${itemID}`);
+  if (!itemID) {
     setText(idMsg, "Error: Invalid ID");
     return;
   }
   setText(idMsg, `Item ID: ${itemID}`);
   var newURL = `${URL_SITE}/?item=${itemID}`;
+  console.log(`[Link] New: ${newURL}`);
   setValue(idNew, newURL);
 }
 
