@@ -1,4 +1,4 @@
 
-var SITE_URL = "https://coolv1994.github.io/Amazon";
+var URL_SITE = "https://coolv1994.github.io/Amazon";
 
-var TAG_ID = "gawdtech-20";
+var ID_TAG = "gawdtech-20";
