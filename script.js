@@ -6,7 +6,7 @@ var URL_AMAZON = "https://www.amazon.com";
 
 /** REGEX **/
 
-var REGEX_ID_ITEM = "([/dp/]|$)([A-Z0-9]{10})";
+var REGEX_ID_ITEM = "([/dp/])([A-Z0-9]{10})";
 var REGEX_ID_LIST = "(?:[/wishlist/]|[ls]|$)([A-Z0-9]{13})";
 
 
