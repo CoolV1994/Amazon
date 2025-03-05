@@ -10,7 +10,7 @@ var REGEX_ID_ITEM = "([/dp/])([A-Z0-9]{10})";
 var REGEX_ID_LIST = "([/wishlist/][ls]?)([A-Z0-9]{13})";
 
 
-/** Core **/
+/** Querey **/
 
 var QUERY_STRING = window.location.search;
 var URL_PARAMS = new URLSearchParams(QUERY_STRING);
