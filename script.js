@@ -99,10 +99,10 @@ function getPageURL ()
   }
   if (ARG_LIST) {
     console.log(`[Redirect] List: ${ARG_LIST}`);
-    return `${URL_SITE}/List/?id=${ARG_LIST}/`;
+    return `${URL_SITE}/List.html?id=${ARG_LIST}`;
   }
   console.log(`[Redirect] Default`);
-  return `${URL_SITE}/Link/`;
+  return `${URL_SITE}/Link.html`;
 }
 
 
