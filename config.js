@@ -4,7 +4,7 @@
 var URL_SITE = "https://coolv1994.github.io/Amazon";
 
 // Default Tag
-var ID_TAG = "gawdtech-20";
+var TAG_DEFAULT = "gawdtech-20";
 
 
 // Section: Redirect
