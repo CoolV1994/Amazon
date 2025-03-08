@@ -35,20 +35,32 @@ var ARG_TAG = URL_PARAMS.get("tag");
 console.log(`[Arg] Tag: ${ARG_TAG}`);
 
 
-/**
- * HTML Functions
- */
+
+// Get Amazon Item URL
+function urlAmazonItem (itemID, tagID)
+{
+  return `${URL_AMAZON}/dp/${itemID}/?tag=${tagID}`;
+}
+
+// Get New Item URL
+function urlSiteItem (itemID, tagID)
+{
+  var url = `${URL_SITE}/?item=${itemID}`;
+  if (tagID) {
+    url += `&tag=${tagID}`;
+  }
+  return url;
+}
+
+
 
 // Get HTML Element
-function getElement (id, parent) {
-  if (!parent) {
-    parent = document;
-  }
-  var element = parent.getElementById(id);
+function getElement (id) {
+  var element = document.getElementById(id);
   return element;
 }
 
-// Set Text/HTML
+// Set Text / HTML
 function setText (id, content="")
 {
   var element = getElement(id);
@@ -95,23 +107,13 @@ function copyText (id)
 function toggleElement (id)
 {
   var element = getElement(id);
-  element.classList.toggle('hide');
+  element.classList.toggle(CLASS_HIDDEN);
   return element;
 }
-
-// Set Section Visibilty
-function showSection (id, show)
-{
-  var element = getElement(id);
-  element.classList.add(show?"show":"hide");
-  element.classList.remove(!show?"show":"hide");
-  return element;
-}
-
 
 
 /**
- * Functions: Regex
+ * Functions
  */
 
 // Regex Search
@@ -141,29 +143,7 @@ function idListFromURL (url)
 
 
 
-/**
- * Functions: URL
- */
-
-function urlAmazonItem (itemID, tagID)
-{
-  return `${URL_AMAZON}/dp/${itemID}/?tag=${tagID}`;
-}
-
-function urlSiteItem (itemID, tagID)
-{
-  var url = `${URL_SITE}/?item=${itemID}`;
-  if (tagID) {
-    url += `&tag=${tagID}`;
-  }
-  return url;
-}
-
-
-/**
- * Page: Redirect
- */
-
+// Redirect To Item URL
 function redirectItem ()
 {
   if (!ARG_ITEM) {
@@ -181,10 +161,7 @@ function redirectItem ()
 
 
 
-/**
- * Page: Link
- */
-
+// Function: Generate New Item URL
 function generateLink ()
 {
   var urlItem = getElement(INPUT_URL);
@@ -207,35 +184,40 @@ function generateLink ()
   setValue(INPUT_URL_NEW, urlNew);
 }
 
-/*
-function addListeners ()
+
+// Function: Register Event Listeners
+function registerEvents ()
 {
-  getElement(BUTTON_LINK).addEventListener("click", generateLink);
-  getElement(BUTTON_CLEAR).addEventListener("click", function(e) {
-    setText(this.id);
+  getElement(BUTTON_LINK).addEventListener(
+    "click", (e) => {
+      generateLink();
+    });
+  getElement(BUTTON_CLEAR).addEventListener(
+    "click", (e) => {
+      setValue(INPUT_URL);
   });
-  getElement(BUTTON_COPY).addEventListener("click", copyText(BUTTON_COPY));
+  getElement(BUTTON_COPY).addEventListener(
+    "click", (e) => {
+      copyText(INPUT_URL_NEW);
+  });
 }
-*/
+
+
+function loadPage ()
+{
+  if (redirectIten()) {
+    toggleElement(SECTION_REDIRECT);
+    return;
+  }
+  registerEvents();
+  toggleElement(SECTION_LINK);
+}
+
 
 
 /**
- * Function: Main
+ * Main Script
  */
 
-function pageLoad ()
-{
-//  addListeners();
-//  showSection(SECTION_NOSCRIPT, false);
-  if (redirectIten()) {
-    toggleElement(SECTION_REDIRECT);
-  } else {
-    toggleElement(SECTION_LINK);
-  }
-/*
-  var redirect = redirectIten();
-  showSection(SECTION_REDIRECT, redirect);
-  showSection(SECTION_LINK, !redirect);
-*/
-}
+loadPage();
 
