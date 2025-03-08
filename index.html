@@ -12,20 +12,26 @@
   </div>
   <div id="link" class="hide">
     <div id="new">
-      <label for="url-new"><h1>New URL:</h1></label>
-      <input type="text" id="url-new" name="url-new" size="60" readonly>
+      <h1>New URL</h1>
+      <input type="text" id="url-new" size="60" readonly>
       <br><br>
       <button id="copy">Copy Link To Clipboard</button>
     </div>
     <br><br><br><br><hr><br>
     <div id="old">
       <p id="message">Paste Amazon product URL below.</p>
-      <label for="url-old"><h1>Amazon URL:</h1></label>
-      <textarea id="url-old" name="url-old" rows="10" cols="60" required="true" placeholder="https://www.amazon.com/dp/[ITEM_ID]"></textarea>
+      <h1>Amazon URL</h1>
+      <textarea id="url-old" rows="10" cols="60" required placeholder="https://www.amazon.com/dp/[ITEM_ID]"></textarea>
       <br><br>
       <button id="generate">Generate Affiliate Link</button>
       <button id="clear">Clear Text</button>
     </div>
+  </div>
+  <div id="list" class="hide">
+    <h1 id="list-title">List</h1>
+    <ul id="list-items">
+      <li><a href="#">Item</a></li>
+    </ul>
   </div>
 <noscript>
   <div id="noscript">
