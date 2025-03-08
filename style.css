@@ -1,10 +1,11 @@
+/* Amazon Link */
 
 #page {
   
 }
 
 #redirect {
-  display: none;
+  
 }
 
 #new {
@@ -15,4 +16,15 @@
   
 }
 
+#loading {
+  
+}
 
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
