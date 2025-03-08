@@ -13,6 +13,9 @@ var URL_REDIRECT = "url-redirect";
 // HTML ID: Link
 var SECTION_LINK= "link";
 
+// HTML ID: Message
+var TEXT_MESSAGE = "message";
+
 // HTML ID: Affiliate
 var SECTION_NEW = "new";
 var URL_NEW = "url-new";
@@ -20,3 +23,6 @@ var URL_NEW = "url-new";
 // HTML ID: Amazon
 var SECTION_OLD = "old";
 var URL_OLD = "url-old";
+
+// HTML ID: Loading
+var SECTION_LOADING = "loading";
