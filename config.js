@@ -36,3 +36,9 @@ var BUTTON_COPY = "copy";
 
 // Class: Hidden
 var CLASS_HIDDEN = "hide";
+
+var SECTION_LIST = "list";
+
+var LIST_TITLE = "list-title";
+
+var LIST_ITEMS = "list-items";
