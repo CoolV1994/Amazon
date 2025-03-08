@@ -106,6 +106,7 @@ function getPageURL ()
   return `${URL_SITE}/Link.html`;
 }
 
+
 function showSection (id, show)
 {
   var section = getElement(id);
@@ -126,6 +127,7 @@ function redirectItem (id)
   var url = `${URL_AMAZON}/dp/${ARG_ITEM}/?tag=${ARG_TAG}`;
   setLink(id, url);
   setURL(url);
+  showSection(id, true);
   return true;
 }
 
@@ -160,7 +162,7 @@ function newLinkItem (idOld, idNew, idMsg)
 function pageLoad ()
 {
   if (redirectIten) {
-    
+    //showSection();
   }
 }
 
