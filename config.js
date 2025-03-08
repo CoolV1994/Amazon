@@ -25,4 +25,4 @@ var SECTION_OLD = "old";
 var URL_OLD = "url-old";
 
 // HTML ID: Loading
-var SECTION_LOADING = "loading";
+var SECTION_NOSCRIPT = "noscript";
