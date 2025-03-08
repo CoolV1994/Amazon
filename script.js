@@ -110,11 +110,18 @@ function getPageURL ()
 
 /** Page: Main **/
 
-function pageMain (id)
+function redirectItem (id)
 {
-  var url = getPageURL();
+  if (!ARG_TAG) {
+    ARG_TAG = TAG_DEFAULT;
+  }
+  if (!ARG_ITEM) {
+    return false;
+  }
+  var url = `${URL_AMAZON}/dp/${ARG_ITEM}/?tag=${ARG_TAG}`;
   setLink(id, url);
   setURL(url);
+  return true;
 }
 
 
