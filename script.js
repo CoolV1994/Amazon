@@ -192,7 +192,7 @@ function registerEvents ()
 // Load Page Content
 function loadPage ()
 {
-  if (redirectIten()) {
+  if (redirectItem()) {
     toggleElement(SECTION_REDIRECT);
     return;
   }
