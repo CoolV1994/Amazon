@@ -106,6 +106,11 @@ function getPageURL ()
   return `${URL_SITE}/Link.html`;
 }
 
+function showSection (id, show)
+{
+  var section = getElement(id);
+  section.class = show ? "show" : "hidden";
+}
 
 
 /** Page: Main **/
@@ -152,8 +157,10 @@ function newLinkItem (idOld, idNew, idMsg)
 
 /** Page: List **/
 
-function pageList ()
+function pageLoad ()
 {
-
+  if (redirectIten) {
+    
+  }
 }
 
