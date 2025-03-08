@@ -92,20 +92,6 @@ function idListFromURL (url)
   return getIdFromURL(REGEX_ID_LIST, url);
 }
 
-function getPageURL ()
-{
-  if (ARG_ITEM) {
-    console.log(`[Redirect] Item: ${ARG_ITEM}`);
-    return `${URL_AMAZON}/dp/${item}/?tag=${tag}`;
-  }
-  if (ARG_LIST) {
-    console.log(`[Redirect] List: ${ARG_LIST}`);
-    return `${URL_SITE}/List.html?id=${ARG_LIST}`;
-  }
-  console.log(`[Redirect] Link`);
-  return `${URL_SITE}/Link.html`;
-}
-
 
 function showSection (id, show)
 {
@@ -116,7 +102,7 @@ function showSection (id, show)
 
 /** Page: Main **/
 
-function redirectItem (id)
+function redirectItem ()
 {
   if (!ARG_TAG) {
     ARG_TAG = TAG_DEFAULT;
@@ -125,9 +111,8 @@ function redirectItem (id)
     return false;
   }
   var url = `${URL_AMAZON}/dp/${ARG_ITEM}/?tag=${ARG_TAG}`;
-  setLink(id, url);
+  setLink(URL_REDIRECT, url);
   setURL(url);
-  showSection(id, true);
   return true;
 }
 
@@ -135,34 +120,35 @@ function redirectItem (id)
 
 /** Page: Link **/
 
-function newLinkItem (idOld, idNew, idMsg)
+function newLinkItem ()
 {
-  var oldItem = getElement(idOld);
+  var oldItem = getElement(URL_OLD);
   var oldURL = oldItem.value;
   console.log(`[Link] URL: ${oldURL}`);
   if (!oldURL) {
-    setText(idMsg, "Error: Invalid URL");
+    setText(TEXT_MESSAGE, "Error: Invalid URL");
     return;
   }
   var itemID = idItemFromURL(oldURL);
   console.log(`[Link] Item: ${itemID}`);
   if (!itemID) {
-    setText(idMsg, "Error: Invalid ID");
+    setText(TEXT_MESSAGE, "Error: Invalid ID");
     return;
   }
-  setText(idMsg, `Item ID: ${itemID}`);
+  setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
   var newURL = `${URL_SITE}/?item=${itemID}`;
   console.log(`[Link] New: ${newURL}`);
-  setValue(idNew, newURL);
+  setValue(URL_NEW, newURL);
 }
 
 
-/** Page: List **/
+/** Page: Load **/
 
 function pageLoad ()
 {
-  if (redirectIten) {
-    //showSection();
-  }
+  showSection(SECTION_LOADING, false);
+  var redirect = redirectIten();
+  showSection(SECTION_REDIRECT, redirect);
+  showSection(SECTION_LINK, !redirect);
 }
 
