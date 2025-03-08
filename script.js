@@ -60,29 +60,28 @@ function getElement (id) {
   return element;
 }
 
+// Toggle Section Visibilty
+function toggleElement (id)
+{
+  return getElement(id).classList.toggle(CLASS_HIDDEN);
+}
+
 // Set Text / HTML
 function setText (id, content="")
 {
-  var element = getElement(id);
-  element.innerHTML = content;
-  return element;
+  return getElement(id).innerHTML = content;
 }
 
 // Set Input Value
 function setValue (id, content="")
 {
-  var element = getElement(id);
-  element.value = content;
-  return element;
+  return getElement(id).value = content;
 }
 
 // Set Hyperlink
 function setLink (id, url)
 {
-  var element = getElement(id);
-  element.innerHTML = url;
-  element.href = url;
-  return element;
+  return setText(id, url).href = url;
 }
 
 // Set Browser URL (Redirect)
@@ -103,18 +102,7 @@ function copyText (id)
   return element;
 }
 
-// Toggle Section Visibilty
-function toggleElement (id)
-{
-  var element = getElement(id);
-  element.classList.toggle(CLASS_HIDDEN);
-  return element;
-}
 
-
-/**
- * Functions
- */
 
 // Regex Search
 function regexSearch (regex, search)
@@ -142,7 +130,6 @@ function idListFromURL (url)
 }
 
 
-
 // Redirect To Item URL
 function redirectItem ()
 {
@@ -160,8 +147,7 @@ function redirectItem ()
 }
 
 
-
-// Function: Generate New Item URL
+// Generate New Item URL
 function generateLink ()
 {
   var urlItem = getElement(INPUT_URL);
@@ -185,7 +171,7 @@ function generateLink ()
 }
 
 
-// Function: Register Event Listeners
+// Register Event Listeners
 function registerEvents ()
 {
   getElement(BUTTON_LINK).addEventListener(
@@ -203,6 +189,7 @@ function registerEvents ()
 }
 
 
+// Load Page Content
 function loadPage ()
 {
   if (redirectIten()) {
@@ -214,10 +201,11 @@ function loadPage ()
 }
 
 
-
 /**
  * Main Script
  */
 
+console.log("[Main] Running...");
 loadPage();
+console.log("[Main] Done");
 
