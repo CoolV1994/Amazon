@@ -16,11 +16,11 @@
 
 <div id="link" class="hide">
 
-  <div id="aff">
+  <div id="new">
     <label for="url-new"><h1>New URL:</h1></label>
-    <input type="text" id="url-new" name="url-new" size="50" value="">
+    <input type="text" id="url-new" name="url-new" size="50" readonly>
     <br><br>
-    <button onclick="copyText('url-new')">Copy Link To Clipboard</button>
+    <button id="copy">Copy Link To Clipboard</button>
 
     <br><br><br><br><hr><br>
   </div>
@@ -31,28 +31,27 @@
     <label for="url-old"><h1>Amazon URL:</h1></label>
     <textarea id="url-old" name="url-old" rows="10" cols="60" required="true" placeholder="https://www.amazon.com/dp/[ITEM_ID]"></textarea>
     <br><br>
-    <button onclick="newLinkItem()">Generate Affiliate Link</button>
-    <button onclick="setValue('url-old')">Clear Text</button>
+    <button id="generate">Generate Affiliate Link</button>
+    <button id="clear">Clear Text</button>
     <!--</form>-->
   </div>
 
 </div>
 
 
-<div id="noscript">
 <noscript>
+<div id="noscript">
   <p>Enable JavaScript</p>
-</noscript>
 </div>
+</noscript>
 
 </div>
 
 
 <script type="text/javascript" src="config.js"></script>
 <script type="text/javascript" src="script.js"></script>
-
 <script type="text/javascript">
-  loadPage();
+//  loadPage();
 </script>
 
 </body>
