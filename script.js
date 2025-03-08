@@ -1,163 +1,241 @@
 /** Amazon Affiliate **/
 
 
-/** Constants **/
+/**
+ * Constants
+ */
+
+// Amazon Base URL
 var URL_AMAZON = "https://www.amazon.com";
 
-/** REGEX **/
-
+// Regex: Amazon Item URL
 var REGEX_ID_ITEM = "([/dp/])([A-Z0-9]{10})";
+// Regex: Amazon List URL
 var REGEX_ID_LIST = "([/wishlist/][ls]?)([A-Z0-9]{13})";
 
 
-/** Querey **/
+/**
+ * URL Query Parameters
+ */
 
+// Get Parameters
 var QUERY_STRING = window.location.search;
 var URL_PARAMS = new URLSearchParams(QUERY_STRING);
 
-
-/** URL Args **/
-
+// Param: Item ID
 var ARG_ITEM = URL_PARAMS.get("item");
 console.log(`[Arg] Item: ${ARG_ITEM}`);
 
+// Param: List ID
 var ARG_LIST = URL_PARAMS.get("list");
 console.log(`[Arg] List: ${ARG_LIST}`);
 
+// Param: Tag ID
 var ARG_TAG = URL_PARAMS.get("tag");
 console.log(`[Arg] Tag: ${ARG_TAG}`);
 
 
-/** HTML **/
+/**
+ * HTML Functions
+ */
 
-function getElement (id) {
-  var element = document.getElementById(id);
+// Get HTML Element
+function getElement (id, parent) {
+  if (!parent) {
+    parent = document;
+  }
+  var element = parent.getElementById(id);
   return element;
 }
 
-function setText(id, text="")
+// Set Text/HTML
+function setText (id, content="")
 {
   var element = getElement(id);
-  element.innerHTML = text;
+  element.innerHTML = content;
+  return element;
 }
 
-function setValue(id, text="")
+// Set Input Value
+function setValue (id, content="")
 {
   var element = getElement(id);
-  element.value = text;
+  element.value = content;
+  return element;
 }
 
+// Set Hyperlink
 function setLink (id, url)
 {
   var element = getElement(id);
   element.innerHTML = url;
   element.href = url;
+  return element;
 }
 
+// Set Browser URL (Redirect)
 function setURL (url)
 {
   window.location.href = url;
   window.location.replace(url);
 }
 
-function copyText(id)
+// Copy Text to Clipboard
+function copyText (id)
 {
-    var textBox = getElement(id);
-    textBox.select();
-    textBox.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(textBox.value);
-    alert("Text Copied To Clipboard:\n" + textBox.value);
+  var element = getElement(id);
+  element.select();
+  element.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(element.value);
+  alert("Text Copied To Clipboard:\n" + element.value);
+  return element;
+}
+
+// Toggle Section Visibilty
+function toggleElement (id)
+{
+  var element = getElement(id);
+  element.classList.toggle('hide');
+  return element;
+}
+
+// Set Section Visibilty
+function showSection (id, show)
+{
+  var element = getElement(id);
+  element.classList.add(show?"show":"hide");
+  element.classList.remove(!show?"show":"hide");
+  return element;
 }
 
 
-/** Functions **/
 
-function getIdFromURL (regex, url)
+/**
+ * Functions: Regex
+ */
+
+// Regex Search
+function regexSearch (regex, search)
 {
-  var match = url.match(regex);
-  console.log(`[Regex] ${match}`);
+  var match = search.match(regex);
+  console.log(`[Regex] Pattern: ${regex}`);
+  console.log(`[Regex] String: ${search}`);
+  console.log(`[Regex] Found: ${match}`);
   if (match.length == 0) {
     return false;
   }
-  return match[2];
+  return match;
 }
 
+// Get Item ID from URL
 function idItemFromURL (url)
 {
-  return getIdFromURL(REGEX_ID_ITEM, url);
+  return regexSearch(REGEX_ID_ITEM, url)[2];
 }
 
+// Get List ID From URL
 function idListFromURL (url)
 {
-  return getIdFromURL(REGEX_ID_LIST, url);
+  return regexSearch(REGEX_ID_LIST, url)[2];
 }
 
 
-function showSection (id, show)
+
+/**
+ * Functions: URL
+ */
+
+function urlAmazonItem (itemID, tagID)
 {
-  var section = getElement(id);
-  section.class = show ? "show" : "hidden";
+  return `${URL_AMAZON}/dp/${itemID}/?tag=${tagID}`;
+}
+
+function urlSiteItem (itemID, tagID)
+{
+  var url = `${URL_SITE}/?item=${itemID}`;
+  if (tagID) {
+    url += `&tag=${tagID}`;
+  }
+  return url;
 }
 
 
-/** Page: Main **/
+/**
+ * Page: Redirect
+ */
 
 function redirectItem ()
 {
-  if (!ARG_TAG) {
-    ARG_TAG = TAG_DEFAULT;
-  }
   if (!ARG_ITEM) {
     return false;
   }
-  var url = `${URL_AMAZON}/dp/${ARG_ITEM}/?tag=${ARG_TAG}`;
-  setLink(URL_REDIRECT, url);
+  if (!ARG_TAG) {
+    ARG_TAG = TAG_DEFAULT;
+  }
+//  var url = `${URL_AMAZON}/dp/${ARG_ITEM}/?tag=${ARG_TAG}`;
+  var url = urlAmazonItem(ARG_ITEM, ARG_TAG);
+  setLink(LINK_REDIRECT, url);
   setURL(url);
   return true;
 }
 
 
 
-/** Page: Link **/
+/**
+ * Page: Link
+ */
 
-function newLinkItem ()
+function generateLink ()
 {
-  var oldItem = getElement(URL_OLD);
-  var oldURL = oldItem.value;
-  console.log(`[Link] URL: ${oldURL}`);
-  if (!oldURL) {
+  var urlItem = getElement(INPUT_URL);
+  var url = urlItem.value;
+  console.log(`[Link] URL: ${url}`);
+  if (!url) {
     setText(TEXT_MESSAGE, "Error: Invalid URL");
     return;
   }
-  var itemID = idItemFromURL(oldURL);
+  var itemID = idItemFromURL(url);
   console.log(`[Link] Item: ${itemID}`);
   if (!itemID) {
     setText(TEXT_MESSAGE, "Error: Invalid ID");
     return;
   }
   setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
-  var newURL = `${URL_SITE}/?item=${itemID}`;
-  console.log(`[Link] New: ${newURL}`);
-  setValue(URL_NEW, newURL);
+//  var urlNew = `${URL_SITE}/?item=${itemID}`;
+  var urlNew = urlSiteItem(itemID);
+  console.log(`[Link] New: ${urlNew}`);
+  setValue(INPUT_URL_NEW, urlNew);
 }
 
-
+/*
 function addListeners ()
 {
-  getElement(BUTTON_LINK).addEventListener("click", newLinkItem);
+  getElement(BUTTON_LINK).addEventListener("click", generateLink);
+  getElement(BUTTON_CLEAR).addEventListener("click", function(e) {
+    setText(this.id);
+  });
   getElement(BUTTON_COPY).addEventListener("click", copyText(BUTTON_COPY));
 }
+*/
 
 
-
-/** Page: Load **/
+/**
+ * Function: Main
+ */
 
 function pageLoad ()
 {
-  addListeners();
+//  addListeners();
 //  showSection(SECTION_NOSCRIPT, false);
+  if (redirectIten()) {
+    toggleElement(SECTION_REDIRECT);
+  } else {
+    toggleElement(SECTION_LINK);
+  }
+/*
   var redirect = redirectIten();
   showSection(SECTION_REDIRECT, redirect);
   showSection(SECTION_LINK, !redirect);
+*/
 }
 
