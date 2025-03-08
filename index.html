@@ -1,58 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Amazon Link</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Amazon Link</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div id="page">
-
-<div id="redirect" class="hide">
-  <a id="url-redirect" href=""></a>
-</div>
-
-
-<div id="link" class="hide">
-
-  <div id="new">
-    <label for="url-new"><h1>New URL:</h1></label>
-    <input type="text" id="url-new" name="url-new" size="60" readonly>
-    <br><br>
-    <button id="copy">Copy Link To Clipboard</button>
-
+  <div id="redirect" class="hide">
+    <a id="url-redirect" href=""></a>
+  </div>
+  <div id="link" class="hide">
+    <div id="new">
+      <label for="url-new"><h1>New URL:</h1></label>
+      <input type="text" id="url-new" name="url-new" size="60" readonly>
+      <br><br>
+      <button id="copy">Copy Link To Clipboard</button>
+    </div>
     <br><br><br><br><hr><br>
+    <div id="old">
+      <p id="message">Paste Amazon product URL below.</p>
+      <label for="url-old"><h1>Amazon URL:</h1></label>
+      <textarea id="url-old" name="url-old" rows="10" cols="60" required="true" placeholder="https://www.amazon.com/dp/[ITEM_ID]"></textarea>
+      <br><br>
+      <button id="generate">Generate Affiliate Link</button>
+      <button id="clear">Clear Text</button>
+    </div>
   </div>
-
-  <div id="old">
-    <p id="message">Paste Amazon product URL below.</p>
-    <!-- <form action="./" method="post">-->
-    <label for="url-old"><h1>Amazon URL:</h1></label>
-    <textarea id="url-old" name="url-old" rows="10" cols="60" required="true" placeholder="https://www.amazon.com/dp/[ITEM_ID]"></textarea>
-    <br><br>
-    <button id="generate">Generate Affiliate Link</button>
-    <button id="clear">Clear Text</button>
-    <!--</form>-->
-  </div>
-
-</div>
-
-
 <noscript>
-<div id="noscript">
-  <p>Enable JavaScript</p>
-</div>
+  <div id="noscript">
+    <p>Enable JavaScript</p>
+  </div>
 </noscript>
-
 </div>
-
-
 <script type="text/javascript" src="config.js"></script>
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
 //  loadPage();
 </script>
-
 </body>
 </html>
