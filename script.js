@@ -154,7 +154,8 @@ function addListeners ()
 
 function pageLoad ()
 {
-  showSection(SECTION_NOSCRIPT, false);
+  addListeners();
+//  showSection(SECTION_NOSCRIPT, false);
   var redirect = redirectIten();
   showSection(SECTION_REDIRECT, redirect);
   showSection(SECTION_LINK, !redirect);
