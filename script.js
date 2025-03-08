@@ -147,6 +147,17 @@ function redirectItem ()
 }
 
 
+// Display Amazon List
+function displayList ()
+{
+  if (!ARG_LIST) {
+    return false;
+  }
+  // list items
+  return true;
+}
+
+
 // Generate New Item URL
 function generateLink ()
 {
@@ -194,6 +205,10 @@ function loadPage ()
 {
   if (redirectItem()) {
     toggleElement(SECTION_REDIRECT);
+    return;
+  }
+  if (displayList() {
+    toggleElement(SECTION_LIST);
     return;
   }
   registerEvents();
