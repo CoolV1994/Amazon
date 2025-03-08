@@ -142,6 +142,14 @@ function newLinkItem ()
 }
 
 
+function addListeners ()
+{
+  getElement(BUTTON_LINK).addEventListener("click", newLinkItem);
+  getElement(BUTTON_COPY).addEventListener("click", copyText(BUTTON_COPY));
+}
+
+
+
 /** Page: Load **/
 
 function pageLoad ()
