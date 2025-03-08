@@ -146,7 +146,7 @@ function newLinkItem ()
 
 function pageLoad ()
 {
-  showSection(SECTION_LOADING, false);
+  showSection(SECTION_NOSCRIPT, false);
   var redirect = redirectIten();
   showSection(SECTION_REDIRECT, redirect);
   showSection(SECTION_LINK, !redirect);
