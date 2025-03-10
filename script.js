@@ -207,7 +207,7 @@ function loadPage ()
     toggleElement(SECTION_REDIRECT);
     return;
   }
-  if (displayList() {
+  if (displayList()) {
     toggleElement(SECTION_LIST);
     return;
   }
