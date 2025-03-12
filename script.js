@@ -159,7 +159,17 @@ function ListData (doc)
   var listParent = doc.getElementById('awl-list-items');
   var listItems = listParent.querySelector('li');
 
+  setText(LIST_TITLE, `${itemTitle[0]} - ${itemTitle[1]}`);
+  setText(LIST_INFO, `${itemDesc[0]}`);
+  var ul = getElement(LIST_ITEMS);
+  ul.innerHTML = "";
+  for (var i = 0; i < listItems.length; i++) {
+    var li = ListItem(listItems[i]);
+    ul.appendChild(li);
+  });
+
   // Object Value
+/*
   this.id = itemID[0];
   this.name = itemTitle[0];
   this.info = itemDesc[0];
@@ -170,6 +180,7 @@ function ListData (doc)
     this.items.push(item);
     //console.log('[ITEM] ['+i+'] '+item);
   }
+*/
 }
 
 // Object: Single Item Data
@@ -180,15 +191,27 @@ function ListItem (listItem)
   var itemTitle = listItem.querySelector('.awl-item-title');
   var itemWrapper = listItem.querySelector('.awl-item-wrapper');
 
+  var listItem = document.createElement('li');
+  var itemLink = document.createElement('a');
+  var itemText = createTextNode(`[${itemWrapper[0]}] ${itemTitle[0]}`);
+  itemLink.href = `#${itemSection[0]}`;
+  itemLink.title = `${itemTitle[1]}`;
+  itemLink.appendChild(itemText);
+  listItem.appendChild(itemLink);
+  return listItem;
+
   // Object Value
+/*
   this.id = itemSection[0];
   this.name = itemTitle[0];
   this.info = itemTitle[1];
   this.price = itemWrapper[0];
+*/
 }
 
 
 // Create New List Item Element
+/*
 function newListElement (item)
 {
   var listItem = document.createElement('li');
@@ -199,7 +222,8 @@ function newListElement (item)
   listItem.appendChild(itemLink);
   return listItem;
 }
-
+*/
+/*
 // Set New List Data
 function setListData (list)
 {
@@ -213,7 +237,7 @@ function setListData (list)
       ul.appendChild(li);
     });
 }
-
+*/
 
 
 
@@ -244,9 +268,9 @@ function displayList ()
   var url = urlAmazonList(ARG_LIST);
   var doc = downloadPage(url);
   //console.log('[DOC] '+doc);
-  var list = new ListData(doc);
+  ListData(doc);
   //console.log('[LIST] '+list);
-  setListData(list);
+  //setListData(list);
   //console.log('Done');
   return true;
 }
