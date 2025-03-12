@@ -234,8 +234,8 @@ function ListItem (listItem)
 // Download and Parse Web Page
 function downloadPage(url)
 {
-  var data = (await (await fetch(url));
-  var html = data.text());
+  var data = (await (await fetch(url)));
+  var html = data.text();
   var parser = new DOMParser();
   var doc = parser.parseFromString(html, 'text/html');
   return doc;
