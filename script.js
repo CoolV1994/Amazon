@@ -58,6 +58,16 @@ function urlSiteItem (itemID, tagID)
   return url;
 }
 
+// Get New List URL
+function urlSiteList (listID, tagID)
+{
+  var url = `${URL_SITE}/?list=${listID}`;
+  if (tagID) {
+    url += `&tag=${tagID}`;
+  }
+  return url;
+}
+
 
 
 // Get HTML Element
@@ -304,16 +314,24 @@ function generateLink ()
     return;
   }
   var itemID = idItemFromURL(url);
-  console.log(`[Link] Item: ${itemID}`);
-  if (!itemID) {
-    setText(TEXT_MESSAGE, "Error: Invalid ID");
+  if (itemID) {
+    console.log(`[Link] Item: ${itemID}`);
+    setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
+    var urlNew = urlSiteItem(itemID);
+    console.log(`[Link] New: ${urlNew}`);
+    setValue(INPUT_URL_NEW, urlNew);
     return;
   }
-  setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
-//  var urlNew = `${URL_SITE}/?item=${itemID}`;
-  var urlNew = urlSiteItem(itemID);
-  console.log(`[Link] New: ${urlNew}`);
-  setValue(INPUT_URL_NEW, urlNew);
+  var listID = idListFromURL(url);
+  if (listID) {
+    console.log(`[Link] List: ${listID}`);
+    setText(TEXT_MESSAGE, `List ID: ${listID}`);
+    var urlNew = urlSiteList(listID);
+    console.log(`[Link] New: ${urlNew}`);
+    setValue(INPUT_URL_NEW, urlNew);
+    return;
+  }
+  setText(TEXT_MESSAGE, "Error: Invalid ID");
 }
 
 
