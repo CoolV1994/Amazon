@@ -37,8 +37,15 @@ var BUTTON_COPY = "copy";
 // Class: Hidden
 var CLASS_HIDDEN = "hide";
 
+
+// Section: List
 var SECTION_LIST = "list";
 
+// Text: Title
 var LIST_TITLE = "list-title";
 
+// Text: Info
+var LIST_INFO = "list-info";
+
+// List: Items
 var LIST_ITEMS = "list-items";
