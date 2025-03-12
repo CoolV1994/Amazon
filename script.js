@@ -305,8 +305,7 @@ function loadPage ()
  * Main Script
  */
 
-console.log("[JS] Loaded");
-//console.log("[Main] Running...");
-//loadPage();
-//console.log("[Main] Done");
+console.log("[Main] Running...");
+loadPage();
+console.log("[Main] Done");
 
