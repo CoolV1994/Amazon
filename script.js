@@ -167,7 +167,6 @@ function ListData (doc)
   }
 }
 
-
 // Object: Single Item Data
 function ListItemData (listItem)
 {
@@ -186,7 +185,6 @@ function ListItemData (listItem)
   this.comment = itemComment.innerHTML;
 }
 
-/*
 // Create New List Item Element
 function newListElement (item)
 {
@@ -199,8 +197,7 @@ function newListElement (item)
   li.appendChild(a);
   return li;
 }
-*/
-/*
+
 // Set New List Data
 function setListData (list)
 {
@@ -213,7 +210,7 @@ function setListData (list)
       ul.appendChild(li);
     });
 }
-*/
+
 // Set List Error Message
 // (title, info, ...items)
 function setListError (message="")
