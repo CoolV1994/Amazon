@@ -140,8 +140,10 @@ function idListFromURL (url)
 // Download and Parse Web Page
 function downloadPage(url)
 {
-  var xhr= new XMLHttpRequest();
-  xhr.open('GET', url, true);
+  //var xhr = new XMLHttpRequest();
+  //xhr.open('GET', url, true);
+  var xhr = new XDomainRequest();
+  xhr.open('GET', url);
 /*
   xhr.onreadystatechange = function() {
     if (this.readyState !== 4) {
