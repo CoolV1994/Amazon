@@ -142,16 +142,23 @@ function downloadPage(url)
 {
   var xhr= new XMLHttpRequest();
   xhr.open('GET', url, true);
+/*
   xhr.onreadystatechange = function() {
-      if (this.readyState !== 4) {
-        setListError("Invalid State: "+this.readyState);
-        return;
-      }
-      if (this.status !== 200) {
-        setListError("Invalid Status: "+this.status);
-        return;
-      }
-      parseListData(this.responseText);
+    if (this.readyState !== 4) {
+      setListError("Invalid State: "+this.readyState);
+      return;
+    }
+  };
+*/
+  xhr.onload = function() {
+    if (this.status !== 200) {
+      setListError("Status: "+this.status);
+      return;
+    }
+    parseListData(this.responseText);
+  };
+  xhr.onerror = function() {
+    setListError("Loading Failed");
   };
   xhr.send();
 }
