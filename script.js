@@ -136,7 +136,7 @@ function idListFromURL (url)
 }
 
 
-
+/*
 // Download and Parse Web Page
 function downloadPage(url)
 {
@@ -146,8 +146,8 @@ function downloadPage(url)
   var doc = parser.parseFromString(html, 'text/html');
   return doc;
 }
-
-
+*/
+/*
 // Object: Amazon List Data
 function ListData (doc)
 {
@@ -164,10 +164,10 @@ function ListData (doc)
   for (var i = 0; i < listItems.length; i++) {
     var itemData = new ListItemData(listItems[i]);
     this.items.push(itemData);
-    //console.log('[ITEM] ['+i+'] '+itemData);
   }
 }
-
+*/
+/*
 // Object: Single Item Data
 function ListItemData (listItem)
 {
@@ -185,8 +185,8 @@ function ListItemData (listItem)
   this.info = itemInfo.innerHTML;
   this.comment = itemComment.innerHTML;
 }
-
-
+*/
+/*
 // Create New List Item Element
 function newListElement (item)
 {
@@ -199,26 +199,21 @@ function newListElement (item)
   li.appendChild(a);
   return li;
 }
-
+*/
+/*
 // Set New List Data
 function setListData (list)
 {
   setText(LIST_TITLE, list.name);
   setText(LIST_INFO, list.desc);
   var ul = setText(LIST_ITEMS, "");
-  for (var i = 0; i < list.items.length; i++) {
-    var li = newListElement(list.items[i]);
-    ul.appendChild(li);
-  }
-/*
   list.items.forEach(
     (item) => {
       var li = newListElement(item);
       ul.appendChild(li);
     });
-*/
 }
-
+*/
 // Set List Error Message
 // (title, info, ...items)
 function setListError (message="")
@@ -234,16 +229,15 @@ function displayList ()
   if (!ARG_LIST) {
     return false;
   }
-  //console.log('[ID] '+ARG_LIST);
-  var docAmazon = downloadPage(urlAmazonList(ARG_LIST));
-  console.log("[DOC] "+docAmazon);
-  if (!docAmazon) {
+//  var docAmazon = downloadPage(urlAmazonList(ARG_LIST));
+//  console.log("[DOC] "+docAmazon);
+//  if (!docAmazon) {
     setListError("Loading Failed");
-    return true;
-  }
-  var data = new ListData(docAmazon);
-  console.log("[LIST] "+data);
-  setListData(data);
+//    return true;
+//  }
+//  var data = new ListData(docAmazon);
+//  console.log("[LIST] "+data);
+//  setListData(data);
   return true;
 }
 
