@@ -152,9 +152,9 @@ function downloadPage(url)
 // Object: Amazon List Data
 function ListData (doc)
 {
-  var listID = doc.getElementByID('listID');
-  var listName = doc.getElementByID('profile-list-name');
-  var listDesc = doc.getElementByID('wlDesc');
+  var listID = doc.getElementById('listID');
+  var listName = doc.getElementById('profile-list-name');
+  var listDesc = doc.getElementById('wlDesc');
   var itemsParent = doc.getElementById('awl-list-items');
   var listItems = itemsParent.querySelector('li');
 
@@ -178,9 +178,9 @@ function ListItem (listItem)
   this.params = JSON.parse(listItem.data-reposition-action-params);
   this.id = this.params.itemExternalId.substring(5, 15);
 
-  var itemName = listItem.getElementByID('itemName_'+this.listID);
-  var itemInfo = listItem.getElementByID('item-byline-'+this.listID);
-  var itemComment = listItem.getElementByID('itemComment_'+this.listID);
+  var itemName = listItem.getElementById('itemName_'+this.listID);
+  var itemInfo = listItem.getElementById('item-byline-'+this.listID);
+  var itemComment = listItem.getElementById('itemComment_'+this.listID);
 
   this.name = itemName.innerHTML;
   this.info = itemInfo.innerHTML;
