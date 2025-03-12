@@ -136,17 +136,45 @@ function idListFromURL (url)
 }
 
 
-/*
+
 // Download and Parse Web Page
 function downloadPage(url)
 {
-  var data = (await (await fetch(url)));
-  var html = data.text();
-  var parser = new DOMParser();
-  var doc = parser.parseFromString(html, 'text/html');
-  return doc;
+  var xhr= new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = function() {
+      if (this.readyState !== 4) {
+        setListError("Invalid State: "+this.readyState);
+        return;
+      }
+      if (this.status !== 200) {
+        setListError("Invalid Status: "+this.status);
+        return;
+      }
+      parseListData(this.responseText);
+  };
+  xhr.send();
 }
-*/
+
+
+function parseListData (text)
+{
+  if (!text) {
+    setListError("Response Empty");
+    return;
+  }
+  var doc = new DOMParser().parseFromString(text, 'text/html');
+  console.log("[DOC] "+doc);
+  if (!doc) {
+    setListError("Invalid Document");
+    return;
+  }
+  var list = new ListData(doc);
+  console.log("[LIST] "+list);
+  setListData(list);
+  return list;
+}
+
 
 // Object: Amazon List Data
 function ListData (doc)
