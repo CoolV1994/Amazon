@@ -147,7 +147,7 @@ function downloadPage(url)
   return doc;
 }
 */
-/*
+
 // Object: Amazon List Data
 function ListData (doc)
 {
@@ -166,8 +166,8 @@ function ListData (doc)
     this.items.push(itemData);
   }
 }
-*/
-/*
+
+
 // Object: Single Item Data
 function ListItemData (listItem)
 {
@@ -185,7 +185,7 @@ function ListItemData (listItem)
   this.info = itemInfo.innerHTML;
   this.comment = itemComment.innerHTML;
 }
-*/
+
 /*
 // Create New List Item Element
 function newListElement (item)
