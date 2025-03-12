@@ -192,7 +192,7 @@ function newListElement (item)
 {
   var li = document.createElement('li');
   var a = document.createElement('a');
-  var text = createTextNode(item.name);
+  var text = document.createTextNode(item.name);
   a.href = urlAmazonItem(item.id, ARG_TAG);
   a.title = item.info;
   a.appendChild(text);
@@ -205,13 +205,18 @@ function setListData (list)
 {
   setText(LIST_TITLE, list.name);
   setText(LIST_INFO, list.desc);
-  var ul = getElement(LIST_ITEMS);
-  ul.innerHTML = "";
+  var ul = setText(LIST_ITEMS, '');
+  for (var i = 0; i < list.items.length; i++) {
+    var li = newListElement(list.items[i]);
+    ul.appendChild(li);
+  }
+/*
   list.items.forEach(
     (item) => {
       var li = newListElement(item);
       ul.appendChild(li);
     });
+*/
 }
 
 // Display Amazon List
