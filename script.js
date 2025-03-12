@@ -225,9 +225,9 @@ function displayList ()
   var url = urlAmazonList(ARG_LIST);
   var doc = downloadPage(url);
   //console.log('[DOC] '+doc);
-  var list = new ListData(doc);
+  var listData = new ListData(doc);
   //console.log('[LIST] '+list);
-  setListData(list);
+  setListData(listData);
   //console.log('Done');
   return true;
 }
