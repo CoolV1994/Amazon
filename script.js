@@ -168,7 +168,7 @@ function ListData (doc)
   for (var i = 0; i < listItems.length; i++) {
     var item = new ListItem(listItems[i]);
     this.items.push(item);
-    console.log(`[ITEM] [${i}] ${item}`);
+    console.log('[ITEM] ['+i+'] '+item);
   }
 }
 
@@ -240,14 +240,14 @@ function displayList ()
   if (!ARG_LIST) {
     return false;
   }
-  console.log(`[ID] ${ARG_LIST}`);
+  console.log('[ID] '+ARG_LIST);
   var url = urlAmazonList(ARG_LIST);
   var doc = downloadPage(url);
-  console.log(`[DOC] ${doc}`);
+  console.log('[DOC] '+doc);
   var list = new ListData(doc);
-  console.log(`[LIST] ${list}`);
+  console.log('[LIST] '+list);
   setListData(list);
-  console.log(`Done`);
+  console.log('Done');
   return true;
 }
 
