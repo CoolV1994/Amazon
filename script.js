@@ -137,7 +137,6 @@ function idListFromURL (url)
 
 
 
-
 // Download and Parse Web Page
 function downloadPage(url)
 {
@@ -163,14 +162,14 @@ function ListData (doc)
   this.desc = listDesc.innerHTML;
   this.items = [];
   for (var i = 0; i < listItems.length; i++) {
-    var itemData = new ListItem(listItems[i]);
+    var itemData = new ListItemData(listItems[i]);
     this.items.push(itemData);
     //console.log('[ITEM] ['+i+'] '+itemData);
   }
 }
 
 // Object: Single Item Data
-function ListItem (listItem)
+function ListItemData (listItem)
 {
   this.listID = listItem.data-itemid;
   this.price = listItem.data-price;
@@ -222,15 +221,15 @@ function displayList ()
     return false;
   }
   //console.log('[ID] '+ARG_LIST);
-  var url = urlAmazonList(ARG_LIST);
-  var doc = downloadPage(url);
+  var docAmazon = downloadPage(urlAmazonList(ARG_LIST));
   //console.log('[DOC] '+doc);
-  var listData = new ListData(doc);
+  var listData = new ListData(docAmazon);
   //console.log('[LIST] '+list);
   setListData(listData);
   //console.log('Done');
   return true;
 }
+
 
 
 // Redirect To Item URL
@@ -248,6 +247,7 @@ function redirectItem ()
   setURL(url);
   return true;
 }
+
 
 
 // Generate New Item URL
@@ -272,6 +272,7 @@ function generateLink ()
   console.log(`[Link] New: ${urlNew}`);
   setValue(INPUT_URL_NEW, urlNew);
 }
+
 
 
 // Register Event Listeners
