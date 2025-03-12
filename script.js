@@ -205,7 +205,7 @@ function setListData (list)
 {
   setText(LIST_TITLE, list.name);
   setText(LIST_INFO, list.desc);
-  var ul = setText(LIST_ITEMS, '');
+  var ul = setText(LIST_ITEMS, "");
   for (var i = 0; i < list.items.length; i++) {
     var li = newListElement(list.items[i]);
     ul.appendChild(li);
@@ -219,6 +219,15 @@ function setListData (list)
 */
 }
 
+// Set List Error Message
+// (title, info, ...items)
+function setListError (message="")
+{
+    setText(LIST_TITLE, "Error: "+ARG_LIST);
+    setText(LIST_INFO, message);
+    setText(LIST_ITEMS, "");
+}
+
 // Display Amazon List
 function displayList ()
 {
@@ -227,11 +236,14 @@ function displayList ()
   }
   //console.log('[ID] '+ARG_LIST);
   var docAmazon = downloadPage(urlAmazonList(ARG_LIST));
-  //console.log('[DOC] '+doc);
+  console.log("[DOC] "+docAmazon);
+  if (!docAmazon) {
+    setListError("Loading Failed");
+    return true;
+  }
   var listData = new ListData(docAmazon);
-  //console.log('[LIST] '+list);
+  console.log("[LIST] "+listData);
   setListData(listData);
-  //console.log('Done');
   return true;
 }
 
