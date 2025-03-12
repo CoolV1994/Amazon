@@ -254,10 +254,10 @@ function displayList ()
   if (!ARG_LIST) {
     return false;
   }
-//  var docAmazon = downloadPage(urlAmazonList(ARG_LIST));
+downloadPage(urlAmazonList(ARG_LIST));
 //  console.log("[DOC] "+docAmazon);
 //  if (!docAmazon) {
-    setListError("Loading Failed");
+//    setListError("Loading Failed");
 //    return true;
 //  }
 //  var data = new ListData(docAmazon);
