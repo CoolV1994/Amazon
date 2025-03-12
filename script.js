@@ -136,75 +136,31 @@ function idListFromURL (url)
 }
 
 
-// Redirect To Item URL
-function redirectItem ()
-{
-  if (!ARG_ITEM) {
-    return false;
-  }
-  if (!ARG_TAG) {
-    ARG_TAG = TAG_DEFAULT;
-  }
-//  var url = `${URL_AMAZON}/dp/${ARG_ITEM}/?tag=${ARG_TAG}`;
-  var url = urlAmazonItem(ARG_ITEM, ARG_TAG);
-  setLink(LINK_REDIRECT, url);
-  setURL(url);
-  return true;
-}
 
 
-// Display Amazon List
-function displayList ()
+// Download and Parse Web Page
+function downloadPage(url)
 {
-  if (!ARG_LIST) {
-    return false;
-  }
-  console.log(`[ID] ${ARG_LIST}`);
-  var doc = downloadPage(urlAmazonList(ARG_LIST));
-  console.log(`[DOC] ${doc}`);
-  var list = new ListData(ARG_LIST, doc);
-  console.log(`[LIST] ${list}`);
-  setListData(list);
-  console.log(`Done`);
-  return true;
+  var data = (await (await fetch(url)));
+  var html = data.text();
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(html, 'text/html');
+  return doc;
 }
 
-// Create New List Item Element
-function newListElement (item)
-{
-  var listItem = document.createElement('li');
-  var itemLink = document.createElement('a');
-  var itemText = createTextNode(item.name);
-  itemLink.href = item.id;
-  itemLink.appendChild(itemText);
-  listItem.appendChild(itemLink);
-  return listItem;
-}
-
-// Set New List Data
-function setListData (list)
-{
-  setText(LIST_TITLE, list.name+' - '+list.owner);
-  setText(LIST_INFO, list.info);
-  var ul = getElement(LIST_ITEMS);
-  ul.innerHTML = "";
-  list.items.forEach(
-    (item) => {
-      ul.appendChild(newListElement(item));
-    });
-}
 
 // Object: Amazon List Data
-function ListData (listID, doc)
+function ListData (doc)
 {
   // HTML Element
+  var itemID = doc.querySelector('#listID');
   var itemTitle = doc.querySelector('.awl-list-title');
   var itemDesc = doc.querySelector('#wlDesc');
   var listParent = doc.getElementById('awl-list-items');
   var listItems = listParent.querySelector('li');
 
   // Object Value
-  this.id = listID;
+  this.id = itemID[0];
   this.name = itemTitle[0];
   this.info = itemDesc[0];
   this.owner = itemTitle[1];
@@ -231,16 +187,69 @@ function ListItem (listItem)
   this.price = itemWrapper[0];
 }
 
-// Download and Parse Web Page
-function downloadPage(url)
+
+// Create New List Item Element
+function newListElement (item)
 {
-  var data = (await (await fetch(url)));
-  var html = data.text();
-  var parser = new DOMParser();
-  var doc = parser.parseFromString(html, 'text/html');
-  return doc;
+  var listItem = document.createElement('li');
+  var itemLink = document.createElement('a');
+  var itemText = createTextNode(item.name);
+  itemLink.href = item.id;
+  itemLink.appendChild(itemText);
+  listItem.appendChild(itemLink);
+  return listItem;
 }
 
+// Set New List Data
+function setListData (list)
+{
+  setText(LIST_TITLE, list.name+' - '+list.owner);
+  setText(LIST_INFO, list.info);
+  var ul = getElement(LIST_ITEMS);
+  ul.innerHTML = "";
+  list.items.forEach(
+    (item) => {
+      var li = newListElement(item);
+      ul.appendChild(li);
+    });
+}
+
+
+
+
+// Redirect To Item URL
+function redirectItem ()
+{
+  if (!ARG_ITEM) {
+    return false;
+  }
+  if (!ARG_TAG) {
+    ARG_TAG = TAG_DEFAULT;
+  }
+//  var url = `${URL_AMAZON}/dp/${ARG_ITEM}/?tag=${ARG_TAG}`;
+  var url = urlAmazonItem(ARG_ITEM, ARG_TAG);
+  setLink(LINK_REDIRECT, url);
+  setURL(url);
+  return true;
+}
+
+
+// Display Amazon List
+function displayList ()
+{
+  if (!ARG_LIST) {
+    return false;
+  }
+  console.log(`[ID] ${ARG_LIST}`);
+  var url = urlAmazonList(ARG_LIST);
+  var doc = downloadPage(url);
+  console.log(`[DOC] ${doc}`);
+  var list = new ListData(doc);
+  console.log(`[LIST] ${list}`);
+  setListData(list);
+  console.log(`Done`);
+  return true;
+}
 
 
 // Generate New Item URL
