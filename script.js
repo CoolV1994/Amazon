@@ -241,9 +241,9 @@ function displayList ()
     setListError("Loading Failed");
     return true;
   }
-  var listData = new ListData(docAmazon);
-  console.log("[LIST] "+listData);
-  setListData(listData);
+  var data = new ListData(docAmazon);
+  console.log("[LIST] "+data);
+  setListData(data);
   return true;
 }
 
