@@ -4,10 +4,6 @@
 <meta charset="UTF-8">
 <title>Amazon Link</title>
 <link rel="stylesheet" href="style.css">
-<script type="text/javascript">
-  const headers = new Headers();
-  headers.append("Access-Control-Allow-Origin", "https://www.amazon.com");
-</script>
 </head>
 <body>
 <div id="page">
@@ -16,7 +12,7 @@
   </div>
   <div id="link" class="hide">
     <div id="new">
-      <h1>New URL</h1>
+      <h1 id="new-title">New URL</h1>
       <input type="text" id="url-new" size="60" readonly>
       <br><br>
       <button id="copy">Copy Link To Clipboard</button>
@@ -24,7 +20,7 @@
     <br><br><br><br><hr><br>
     <div id="old">
       <p id="message">Paste Amazon product / list URL below.</p>
-      <h1>Amazon URL</h1>
+      <h1 id="old-title">Amazon URL</h1>
       <textarea id="url-old" rows="10" cols="60" required placeholder="https://www.amazon.com/dp/[[ITEM_ID]]\nhttps://www.amazon.com/wishlist/[[LIST_ID]]"></textarea>
       <br><br>
       <button id="generate">Generate Link</button>
