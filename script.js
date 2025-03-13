@@ -9,7 +9,7 @@
 var URL_AMAZON = "https://www.amazon.com";
 
 // Regex: Amazon Item URL
-var REGEX_ID_ITEM = "([/dp/])([A-Z0-9]{10})";
+var REGEX_ID_ITEM = "(dp)\/([A-Z0-9]{10})";
 // Regex: Amazon List URL
 var REGEX_ID_LIST = "(hz)?\/(wishlist)\/(ls)?\/?([A-Z0-9]{13})";
 
@@ -325,7 +325,7 @@ function generateLink ()
   }
   var parts = idItemFromURL(url);
   var itemID = parts[2];
-  if (parts[0]) {
+  if (parts[1] == "dp") {
     console.log(`[Link] Item: ${itemID}`);
     setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
     var urlNew = urlSiteItem(itemID);
