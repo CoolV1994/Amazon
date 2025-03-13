@@ -260,8 +260,8 @@ function setListData (list)
 // (title, info, ...items)
 function setListError (message="")
 {
-    setText(LIST_TITLE, "Error: "+ARG_LIST);
-    setText(LIST_INFO, message);
+    setText(LIST_TITLE, ARG_LIST);
+    setText(LIST_INFO, "Error: "+message);
     setText(LIST_ITEMS, "");
 }
 
