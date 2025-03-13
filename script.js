@@ -294,7 +294,6 @@ function redirectItem ()
   if (!ARG_TAG) {
     ARG_TAG = TAG_DEFAULT;
   }
-//  var url = `${URL_AMAZON}/dp/${ARG_ITEM}/?tag=${ARG_TAG}`;
   var url = urlAmazonItem(ARG_ITEM, ARG_TAG);
   setLink(LINK_REDIRECT, url);
   setURL(url);
