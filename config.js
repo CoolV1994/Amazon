@@ -7,14 +7,31 @@ var URL_SITE = "https://coolv1994.github.io/Amazon";
 var TAG_DEFAULT = "gawdtech-20";
 
 
+// Class: Hidden
+var CLASS_HIDDEN = "hide";
+
+
 // Section: Redirect
 var SECTION_REDIRECT = "redirect";
 
 // Hyperlink: Redirect
 var LINK_REDIRECT = "url-redirect";
 
+
 // Section: Link
 var SECTION_LINK= "link";
+
+// Section: Link
+var SECTION_LINK_NEW= "new";
+
+// Section: Link
+var SECTION_LINK_OLD= "old";
+
+// Section: Link
+var TITLE_NEW= "title-new";
+
+// Section: Link
+var TITLE_OLD= "title-old";
 
 // Text Box: Affiliate
 var INPUT_URL_NEW = "url-new";
@@ -33,9 +50,6 @@ var BUTTON_CLEAR = "clear";
 
 // Button: Copy Text
 var BUTTON_COPY = "copy";
-
-// Class: Hidden
-var CLASS_HIDDEN = "hide";
 
 
 // Section: List
