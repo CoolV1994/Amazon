@@ -136,13 +136,13 @@ function regexSearch (regex, search)
 // Get Item ID from URL
 function idItemFromURL (url)
 {
-  return regexSearch(REGEX_ID_ITEM, url)[2];
+  return regexSearch(REGEX_ID_ITEM, url);
 }
 
 // Get List ID From URL
 function idListFromURL (url)
 {
-  return regexSearch(REGEX_ID_LIST, url)[2];
+  return regexSearch(REGEX_ID_LIST, url);
 }
 
 
@@ -313,8 +313,9 @@ function generateLink ()
     setText(TEXT_MESSAGE, "Error: Invalid URL");
     return;
   }
-  var listID = idListFromURL(url);
-  if (listID) {
+  var parts = idListFromURL(url);
+  var listID = parts[2];
+  if (parts[0] == "wishlist") {
     console.log(`[Link] List: ${listID}`);
     setText(TEXT_MESSAGE, `List ID: ${listID}`);
     var urlNew = urlSiteList(listID);
@@ -322,8 +323,9 @@ function generateLink ()
     setValue(INPUT_URL_NEW, urlNew);
     return;
   }
-  var itemID = idItemFromURL(url);
-  if (itemID) {
+  var parts = idItemFromURL(url);
+  var itemID = parts[2];
+  if (parts[0]) {
     console.log(`[Link] Item: ${itemID}`);
     setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
     var urlNew = urlSiteItem(itemID);
