@@ -127,9 +127,7 @@ function regexSearch (regex, search)
   console.log(`[Regex] Pattern: ${regex}`);
   console.log(`[Regex] String: ${search}`);
   console.log(`[Regex] Found: ${match}`);
-  if (match.length == 0) {
-    return false;
-  }
+//  if (match.length == 0) return false;
   return match;
 }
 
