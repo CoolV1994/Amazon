@@ -314,8 +314,8 @@ function generateLink ()
     return;
   }
   var parts = idListFromURL(url);
-  var listID = parts[2];
-  if (parts[0] == "wishlist") {
+  var listID = parts[4];
+  if (parts[2] == "wishlist") {
     console.log(`[Link] List: ${listID}`);
     setText(TEXT_MESSAGE, `List ID: ${listID}`);
     var urlNew = urlSiteList(listID);
