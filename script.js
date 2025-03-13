@@ -311,7 +311,7 @@ function generateLink ()
   var url = urlItem.value;
   console.log(`[Link] URL: ${url}`);
   if (!url) {
-    setText(TEXT_MESSAGE, "Error: Invalid URL");
+    setText(TEXT_MESSAGE, "Enter Item / List URL");
     return;
   }
   var itemID = idItemFromURL(url);
