@@ -4,6 +4,22 @@
   
 }
 
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.separator {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+
+/* Sections */
+
 #redirect {
   
 }
@@ -16,15 +32,6 @@
   
 }
 
-#loading {
+#list {
   
-}
-
-
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
 }
