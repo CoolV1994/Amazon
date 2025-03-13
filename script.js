@@ -321,7 +321,7 @@ function generateLink ()
     var urlNew = urlSiteItem(itemID);
     console.log(`[Link] New: ${urlNew}`);
     setValue(INPUT_URL_NEW, urlNew);
-    setText(TITLE_NEW, `Item: ${itemID}`);
+    setText(TITLE_NEW, "Item URL"); // `Item: ${itemID}`
     return;
   }
   var listID = idListFromURL(url);
@@ -331,7 +331,7 @@ function generateLink ()
     var urlNew = urlSiteList(listID);
     console.log(`[Link] New: ${urlNew}`);
     setValue(INPUT_URL_NEW, urlNew);
-    setText(TITLE_NEW, `List: ${listID}`);
+    setText(TITLE_NEW, "List URL"); // `List: ${listID}`
     return;
   }
   setText(TEXT_MESSAGE, "Error: Invalid ID");
