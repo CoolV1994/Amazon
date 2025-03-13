@@ -313,20 +313,20 @@ function generateLink ()
     setText(TEXT_MESSAGE, "Error: Invalid URL");
     return;
   }
-  var itemID = idItemFromURL(url);
-  if (itemID) {
-    console.log(`[Link] Item: ${itemID}`);
-    setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
-    var urlNew = urlSiteItem(itemID);
-    console.log(`[Link] New: ${urlNew}`);
-    setValue(INPUT_URL_NEW, urlNew);
-    return;
-  }
   var listID = idListFromURL(url);
   if (listID) {
     console.log(`[Link] List: ${listID}`);
     setText(TEXT_MESSAGE, `List ID: ${listID}`);
     var urlNew = urlSiteList(listID);
+    console.log(`[Link] New: ${urlNew}`);
+    setValue(INPUT_URL_NEW, urlNew);
+    return;
+  }
+  var itemID = idItemFromURL(url);
+  if (itemID) {
+    console.log(`[Link] Item: ${itemID}`);
+    setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
+    var urlNew = urlSiteItem(itemID);
     console.log(`[Link] New: ${urlNew}`);
     setValue(INPUT_URL_NEW, urlNew);
     return;
