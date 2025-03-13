@@ -137,6 +137,7 @@ function regexSearch (regex, search)
 function idItemFromURL (url)
 {
   var match = regexSearch(REGEX_ID_ITEM, url);
+  if (!match) return false;
   return match[1]=="dp" ? match[2] : false;
 }
 
@@ -144,6 +145,7 @@ function idItemFromURL (url)
 function idListFromURL (url)
 {
   var match = regexSearch(REGEX_ID_LIST, url);
+  if (!match) return false;
   return match[2]=="wishlist" ? match[4] : false;
 }
 
