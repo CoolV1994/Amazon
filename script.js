@@ -311,13 +311,13 @@ function generateLink ()
   var url = urlItem.value;
   console.log(`[Link] URL: ${url}`);
   if (!url) {
-    setText(TEXT_MESSAGE, "Enter Item / List URL");
+    setValue(INPUT_URL_NEW, "Enter Item / List URL");
     return;
   }
   var itemID = idItemFromURL(url);
   if (itemID) {
     console.log(`[Link] Item: ${itemID}`);
-    setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
+  s/ /etText(TEXT_MESSAGE, `Item ID: ${itemID}`);
     var urlNew = urlSiteItem(itemID, ARG_TAG);
     console.log(`[Link] New: ${urlNew}`);
     setValue(INPUT_URL_NEW, urlNew);
@@ -327,15 +327,15 @@ function generateLink ()
   var listID = idListFromURL(url);
   if (listID) {
     console.log(`[Link] List: ${listID}`);
-    setText(TEXT_MESSAGE, `List ID: ${listID}`);
+    //setText(TEXT_MESSAGE, `List ID: ${listID}`);
     var urlNew = urlSiteList(listID, ARG_TAG);
     console.log(`[Link] New: ${urlNew}`);
     setValue(INPUT_URL_NEW, urlNew);
     setText(TITLE_NEW, "List URL"); // `List: ${listID}`
     return;
   }
-  setText(TEXT_MESSAGE, "Error: Invalid ID");
-  setValue(INPUT_URL_NEW, "");
+  setValue(INPUT_URL_NEW, "Error: Invalid ID");
+  //setValue(INPUT_URL_NEW, "");
 }
 
 
