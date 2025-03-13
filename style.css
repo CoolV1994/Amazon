@@ -1,9 +1,5 @@
 /* Amazon Link */
 
-#page {
-  
-}
-
 .show {
   display: block;
 }
@@ -20,7 +16,15 @@
 
 /* Sections */
 
+#page {
+  
+}
+
 #redirect {
+  
+}
+
+#link {
   
 }
 
@@ -33,5 +37,9 @@
 }
 
 #list {
+  
+}
+
+#noscript {
   
 }
