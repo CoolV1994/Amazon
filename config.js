@@ -28,10 +28,10 @@ var SECTION_LINK_NEW= "new";
 var SECTION_LINK_OLD= "old";
 
 // Section: Link
-var TITLE_NEW= "title-new";
+var TITLE_NEW= "new-title";
 
 // Section: Link
-var TITLE_OLD= "title-old";
+var TITLE_OLD= "old-title";
 
 // Text Box: Affiliate
 var INPUT_URL_NEW = "url-new";
