@@ -313,19 +313,9 @@ function generateLink ()
     setText(TEXT_MESSAGE, "Error: Invalid URL");
     return;
   }
-  var parts = idListFromURL(url);
-  var listID = parts[4];
-  if (parts[2] == "wishlist") {
-    console.log(`[Link] List: ${listID}`);
-    setText(TEXT_MESSAGE, `List ID: ${listID}`);
-    var urlNew = urlSiteList(listID);
-    console.log(`[Link] New: ${urlNew}`);
-    setValue(INPUT_URL_NEW, urlNew);
-    return;
-  }
   var parts = idItemFromURL(url);
-  var itemID = parts[2];
   if (parts[1] == "dp") {
+    var itemID = parts[2];
     console.log(`[Link] Item: ${itemID}`);
     setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
     var urlNew = urlSiteItem(itemID);
@@ -333,7 +323,18 @@ function generateLink ()
     setValue(INPUT_URL_NEW, urlNew);
     return;
   }
+  parts = idListFromURL(url);
+  if (parts[2] == "wishlist") {
+    var listID = parts[4];
+    console.log(`[Link] List: ${listID}`);
+    setText(TEXT_MESSAGE, `List ID: ${listID}`);
+    var urlNew = urlSiteList(listID);
+    console.log(`[Link] New: ${urlNew}`);
+    setValue(INPUT_URL_NEW, urlNew);
+    return;
+  }
   setText(TEXT_MESSAGE, "Error: Invalid ID");
+  setValue(INPUT_URL_NEW, "");
 }
 
 
