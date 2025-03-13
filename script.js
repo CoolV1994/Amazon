@@ -318,7 +318,7 @@ function generateLink ()
   if (itemID) {
     console.log(`[Link] Item: ${itemID}`);
     setText(TEXT_MESSAGE, `Item ID: ${itemID}`);
-    var urlNew = urlSiteItem(itemID);
+    var urlNew = urlSiteItem(itemID, ARG_TAG);
     console.log(`[Link] New: ${urlNew}`);
     setValue(INPUT_URL_NEW, urlNew);
     setText(TITLE_NEW, "Item URL"); // `Item: ${itemID}`
@@ -328,7 +328,7 @@ function generateLink ()
   if (listID) {
     console.log(`[Link] List: ${listID}`);
     setText(TEXT_MESSAGE, `List ID: ${listID}`);
-    var urlNew = urlSiteList(listID);
+    var urlNew = urlSiteList(listID, ARG_TAG);
     console.log(`[Link] New: ${urlNew}`);
     setValue(INPUT_URL_NEW, urlNew);
     setText(TITLE_NEW, "List URL"); // `List: ${listID}`
